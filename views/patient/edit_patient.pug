@@ -1,0 +1,27 @@
+extends /layout
+block content
+	h1 #{title}
+	form(method='POST', action='/patients/edit/'+patient._id)
+		#form-group
+			label Health Number: 
+			input.form-control(name='health_no', type='text', value=patient.health_no)
+		#form-group
+			label Name: 
+			input.form-control(name='name', type='text', value=patient.name)
+		#form-group
+			label Phone number: 
+			input.form-control(name='phone_no', type='text', value=patient.phone_no)
+		#form-group
+			label Street number: 
+			input.form-control(name='street_no', type='text', value=patient.street_no)
+		#form-group
+			label Street Name: 
+			input.form-control(name='street_name', type='text', value=patient.street_name)
+		#form-group
+			label City: 
+			input.form-control(name='city', type='text', value=patient.city)
+		#form-group
+			label Province: 
+			input.form-control(name='province', type='text', value=patient.province)
+		br
+		input.btn.btn-primary(type='submit',value='Submit') 

@@ -1,0 +1,10 @@
+extends /layout
+block content
+    h1 Name: #{doctor.name}
+    ul.list-group
+        li.list-group-item <b>SIN:</b> #{doctor.sin}
+        li.list-group-item <b>Specializations:</b> #{doctor.specialization}
+        li.list-group-item <b>Start Date:</b> #{moment(doctor.start_date).format('D MMMM YYYY')}
+    hr
+    a.btn.btn-default(href='/doctors/edit/'+doctor._id) Edit
+    a.btn.btn-danger.delete-doctor(href='#',data-id=doctor._id) Delete

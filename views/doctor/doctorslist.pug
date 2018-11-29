@@ -1,0 +1,9 @@
+extends /layout
+
+block content
+    h2 #{title}
+    ul.list-group
+        each doctor, i in doctors
+            li.list-group-item
+                a(href="/doctors/"+doctor._id)= doctor.name
+    a.btn.btn-default(href='/doctors/add/') Add Doctor
