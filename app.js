@@ -11,7 +11,6 @@
 // Using passport to implement user
 // Using Bcrypt JS to encrypt user
 
-
 const express = require('express');         // brings in express module
 const path = require('path');               // core module included with nodejs
 const mongoose = require('mongoose');       //
