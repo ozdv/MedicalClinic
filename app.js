@@ -42,10 +42,12 @@ const app = express();
 // Bring in Models
 let Patient = require('./models/patient');
 let Doctor = require('./models/doctor');
+let Nurse = require('./models/nurse');
 
 // Load view engine
 app.set('views', [path.join(__dirname,'views'),
                     path.join(__dirname, 'views/patient/'),
+                    path.join(__dirname, 'views/nurse/'),
                     path.join(__dirname, 'views/doctor/')]);
 app.set('view engine', 'pug');
 
@@ -95,6 +97,7 @@ app.use(expressValidator({
 
 // Passport config
 require('./config/passport')(passport);
+
 // Passport Middleware
 app.use(passport.initialize());
 app.use(passport.session());
@@ -146,6 +149,20 @@ app.get('/doctorslist', function(req, res){
     });
 });
 
+// List of nurses
+app.get('/nurseslist', function(req, res){
+    Nurse.find({}, function(err, nurses){
+        if(err){
+            console.log(err);
+        } else{
+            res.render('nurseslist', {
+                title: 'Clinic Nurses',
+                nurses: nurses
+            });
+        }
+    });
+});
+
 // Route files
 let patients = require('./routes/patients');
 app.use('/patients', patients);
@@ -155,6 +172,9 @@ app.use('/users', users);
 
 let doctors = require('./routes/doctors');
 app.use('/doctors', doctors);
+
+let nurses = require('./routes/nurses');
+app.use('/nurses', nurses);
 
 // Start server
 app.listen(3000, function(){

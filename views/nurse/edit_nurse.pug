@@ -1,0 +1,15 @@
+extends /layout
+block content
+    h1 #{title}
+    form(action="/nurses/edit/"+nurse._id, method="POST")
+        #form-group
+            label SIN:
+            input.form-control(name='sin', type='text', value=nurse.sin)
+        #form-group
+            label Name:
+            input.form-control(name='name', type='text', value=nurse.name)
+        #form-group
+            label Specializations:
+            input.form-control(name='specialization', type='text', value=nurse.specialization)
+        br
+        input.btn.btn-primary(type='submit',value='Submit') 

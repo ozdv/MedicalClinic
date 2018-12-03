@@ -51,7 +51,7 @@ router.post('/register', function(req, res){
 						return;
 					} else {
 						req.flash('success','You are now registered and can log in');
-						res.redirect('/users/login');
+						res.redirect('/users/stafflogin');
 					}
 				})
 			});
@@ -60,15 +60,15 @@ router.post('/register', function(req, res){
 });
 
 // Login form
-router.get('/login', function(req, res){
-	res.render('login');
+router.get('/stafflogin', function(req, res){
+	res.render('stafflogin');
 });
 
 // Login proccess
-router.post('/login', function(req, res, next){
+router.post('/stafflogin', function(req, res, next){
 	passport.authenticate('local', {
 		successRedirect:'/',
-		failureRedirect:'/users/login/',
+		failureRedirect:'/users/stafflogin/',
 		failureFlash: true
 	})(req, res, next);
 });
@@ -77,7 +77,7 @@ router.post('/login', function(req, res, next){
 router.get('/logout', function(req, res){
 	req.logout();
 	req.flash('success', 'You are logged out');
-	res.redirect('/users/login');
+	res.redirect('/users/stafflogin');
 });
 
 module.exports = router;

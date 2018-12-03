@@ -1,7 +1,9 @@
 extends /layout
+
 block content
 	h2 #{title}
 	ul.list-group
 		each patient, i in patients
 			li.list-group-item
-				a(href="/patients/"+patient._id)= patient.name 
+				a(href="/patients/"+patient._id)= patient.name
+	a.btn.btn-default(href='/patients/add/') Add Patient 

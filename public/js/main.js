@@ -35,3 +35,22 @@ $(document).ready(function () {
 		})
 	})
 })
+
+// Delete nurse call
+$(document).ready(function () {
+	$('.delete-nurse').on('click', function (e) {
+		$target = $(e.target)
+		const id = $target.attr('data-id')
+		$.ajax({
+			type:'DELETE',
+			url: '/nurses/'+id,
+			success: function(response){
+				alert('Deleting Nurse')
+				window.location.href='/nurseslist/'
+			},
+			error: function(err){
+				console.log(err);
+			}
+		})
+	})
+})

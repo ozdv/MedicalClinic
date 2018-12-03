@@ -1,9 +1,9 @@
 extends /layout
 block content
-	h1 Login
-	form(method='POST', action='/users/login')
+	h1 Patient Login
+	form(method='POST', action='/users/patientlogin')
 		#form-group
-			label Username or ID: 
+			label Health Number: 
 			input.form-control(name='username', type='text')
 		#form-group
 			label Password: 

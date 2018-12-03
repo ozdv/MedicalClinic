@@ -1,0 +1,9 @@
+extends /layout
+
+block content
+    h2 #{title}
+    ul.list-group
+        each nurse, i in nurses
+            li.list-group-item
+                a(href="/nurses/"+nurse._id)= nurse.name
+    a.btn.btn-default(href='/nurses/add/') Add Nurse
