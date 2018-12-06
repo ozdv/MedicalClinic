@@ -30,7 +30,6 @@ router.post('/add', function (req, res) {
         let nurse = new Nurse();
         nurse.sin = req.body.sin;
         nurse.name = req.body.name;
-        nurse.specialization = req.body.specialization;
         nurse.start_date = Date.now();
 
         nurse.save(function (err) {
@@ -75,7 +74,6 @@ router.post('/edit/:id', function (req, res) {
         let nurse = {};
         nurse.sin = req.body.sin;
         nurse.name = req.body.name;
-        nurse.specialization = req.body.specialization;
 
         let query = {_id:req.params.id}
 

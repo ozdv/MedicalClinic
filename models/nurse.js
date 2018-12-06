@@ -12,10 +12,6 @@ let nurseSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    specialization:{
-        type: String,
-        default: 'None'
-    },
     start_date:{
         type: Date,
         required: true
