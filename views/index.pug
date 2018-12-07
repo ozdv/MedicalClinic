@@ -1,13 +1,12 @@
 extends layout
 
 block content
-	h1 #{title}
-	br
-
 	if user
 		if user.admin == true
+			h1 Welcome, #{user.name}
 			p You are an administrator of this system
 		else
+			h1 Patient Profile
 			ul.list-group
 				li.list-group-item <b>Health Number:</b> #{user.health_no}
 				li.list-group-item <b>Phone Number:</b> #{user.phone_no}
@@ -15,5 +14,6 @@ block content
 				li.list-group-item <b>City:</b> #{user.city}
 				li.list-group-item <b>Province:</b> #{user.province}
 	else
+		h1 #{title}
 		p This is a Medical Clinic CMS
 		p Please log-in to use system
