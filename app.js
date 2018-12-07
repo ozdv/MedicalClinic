@@ -44,13 +44,15 @@ let Patient = require('./models/patient');
 let Doctor = require('./models/doctor');
 let Nurse = require('./models/nurse');
 let Receptionists = require('./models/receptionist');
+let Equipment = require('./models/equipment');
 
 // Load view engine
 app.set('views', [path.join(__dirname,'views'),
                     path.join(__dirname, 'views/patient/'),
                     path.join(__dirname, 'views/nurse/'),
                     path.join(__dirname, 'views/doctor/'),
-                    path.join(__dirname, 'views/receptionist/')]);
+                    path.join(__dirname, 'views/receptionist/'),
+                    path.join(__dirname, 'views/equipment/')]);
 app.set('view engine', 'pug');
 
 // Set basedir to use absolute paths
@@ -137,19 +139,6 @@ app.get('/patientslist', function(req, res){
     });
 })
 
-app.get('/patientlookup', function(req, res){
-    Patient.find({}, function(err, patients){
-        if(err){
-            consol.log(err);
-        } else{
-            res.render('patientlookup', {
-                title: 'Patient Information',
-                patients: patients
-            });
-        }
-    });
-});
-
 // List of doctors
 app.get('/doctorslist', function(req, res){
     Doctor.find({}, function(err, doctors){
@@ -192,9 +181,26 @@ app.get('/receptionistslist', function(req, res){
     });
 });
 
+// List of equipment
+app.get('/equipment', function(req, res){
+    Equipment.find({}, function(err, equipment){
+        if(err){
+            console.log(err);
+        } else{
+            res.render('equipment', {
+                title: 'Equipment',
+                equipment: equipment
+            });
+        }
+    });
+});
+
 // Route files
 let patients = require('./routes/patients');
 app.use('/patients', patients);
+
+let equipment = require('./routes/equipment');
+app.use('/equipment', equipment);
 
 let users = require('./routes/users');
 app.use('/users', users);
