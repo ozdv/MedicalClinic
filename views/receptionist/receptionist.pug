@@ -1,0 +1,9 @@
+extends /layout
+block content
+    h1 Name: #{receptionist.name}
+    ul.list-group
+        li.list-group-item <b>SIN:</b> #{receptionist.sin}
+        li.list-group-item <b>Start Date:</b> #{moment(receptionist.start_date).format('D MMMM YYYY')}
+    hr
+    a.btn.btn-default(href='/receptionists/edit/'+receptionist._id) Edit
+    a.btn.btn-danger.delete-receptionist(href='#',data-id=receptionist._id) Delete

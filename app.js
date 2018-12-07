@@ -43,12 +43,14 @@ const app = express();
 let Patient = require('./models/patient');
 let Doctor = require('./models/doctor');
 let Nurse = require('./models/nurse');
+let Receptionists = require('./models/receptionist');
 
 // Load view engine
 app.set('views', [path.join(__dirname,'views'),
                     path.join(__dirname, 'views/patient/'),
                     path.join(__dirname, 'views/nurse/'),
-                    path.join(__dirname, 'views/doctor/')]);
+                    path.join(__dirname, 'views/doctor/'),
+                    path.join(__dirname, 'views/receptionist/')]);
 app.set('view engine', 'pug');
 
 // Set basedir to use absolute paths
@@ -176,6 +178,20 @@ app.get('/nurseslist', function(req, res){
     });
 });
 
+// List of receptionlist
+app.get('/receptionistslist', function(req, res){
+    Receptionists.find({}, function(err, receptionists){
+        if(err){
+            console.log(err);
+        } else{
+            res.render('receptionistslist', {
+                title: 'Receptionists',
+                receptionists: receptionists
+            });
+        }
+    });
+});
+
 // Route files
 let patients = require('./routes/patients');
 app.use('/patients', patients);
@@ -185,6 +201,9 @@ app.use('/users', users);
 
 let doctors = require('./routes/doctors');
 app.use('/doctors', doctors);
+
+let receptionists = require('./routes/receptionists');
+app.use('/receptionists', receptionists);
 
 let nurses = require('./routes/nurses');
 app.use('/nurses', nurses);

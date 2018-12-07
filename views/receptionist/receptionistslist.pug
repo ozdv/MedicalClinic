@@ -1,0 +1,9 @@
+extends /layout
+
+block content
+    h2 #{title}
+    ul.list-group
+        each receptionist, i in receptionists
+            li.list-group-item
+                a(href="/receptionists/"+receptionist._id)= receptionist.name
+    a.btn.btn-default(href='/receptionists/add/') Add receptionist
