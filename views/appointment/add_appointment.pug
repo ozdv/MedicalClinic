@@ -3,17 +3,26 @@ block content
     h1 #{title}
     form(action="/appointments/add", method="POST")
         #form-group
-            label Patient ID:
-            input.form-control(name='patient_id', type='text')
+            label Select Patient:
+            select.form-control(name='patient_id')
+                each patient, i in patients
+                    option(value=patient._id) #{patient.name}
         #form-group
-            label Doctor SIN:
-            input.form-control(name='doctor_sin', type='text')
+            label Select Doctor:
+            select.form-control(name='doctor_sin')
+                each doctor, i in doctors
+                    option(value=doctor._id) #{doctor.name}
         #form-group
-            label Receptionist SIN:
-            input.form-control(name='receptionsit_sin', type='text')
+            label Select Receptionist:
+            select.form-control(name='receptionsit_sin')
+                each receptionist, i in receptionists
+                    option(value=receptionist._id) #{receptionist.name}
         #form-group
             label Type:
-            input.form-control(name='type', type='text')
+            select.form-control(name='type')
+                option(value="checkup") Checkup
+                option(value="dental") Dental
+                option(value="follow_up") Follow-Up
         #form-group
             label Purpose:
             input.form-control(name='purpose', type='text')

@@ -1,12 +1,36 @@
-const express = require('express');
-const router = express.Router();
+const express = require('express')
+const router = express.Router()
 
-let Appointment = require('../models/appointment');
+let Appointment = require('../models/appointment')
+let Patient = require('../models/patient')
+let Doctor = require('../models/doctor')
+let Receptionist = require('../models/receptionist')
 
 // Add appointment
 router.get('/add', function (req, res) {
-    res.render('add_appointment', {
-        title: 'Add Appointment'
+    Patient.find({}, function(err, all_patients){
+        if(err){
+            console.log(err)
+        } else{
+            Doctor.find({}, function(err, all_doctors){
+                if(err){
+                    console.log(err)
+                } else{
+                    Receptionist.find({}, function(err, all_receptionists){
+                        if(err){
+                            console.log(err)
+                        } else{
+                            res.render('add_appointment', {
+                                title: 'Add Appointment',
+                                patients: all_patients,
+                                doctors: all_doctors,
+                                receptionists: all_receptionists
+                            })
+                        }
+                    })
+                }
+            })
+        }
     })
 })
 
