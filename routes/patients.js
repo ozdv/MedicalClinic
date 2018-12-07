@@ -82,9 +82,6 @@ router.get('/edit/:id', function(req, res){
 // Update submit POST route
 router.post('/edit/:id', function(req, res){
     // Form input validation
-    req.check('health_no')
-        .notEmpty().withMessage('Health number is required')
-        .isInt().withMessage('Health number must be an integer');
     req.check('name')
         .notEmpty().withMessage('Name is required')
         .isAscii().withMessage('Name must contain only ASCII characters');
@@ -117,7 +114,6 @@ router.post('/edit/:id', function(req, res){
         });
     }else{
         let patient = {};
-        patient._id = req.body.health_no;
         patient.name = req.body.name;
         patient.phone_no = req.body.phone_no;
         patient.street_no = req.body.street_no;

@@ -56,9 +56,6 @@ router.get('/edit/:id', function (req, res) {
 
 // Submit POST route for adding a receptionist
 router.post('/edit/:id', function (req, res) {
-    req.check('sin')
-        .notEmpty().withMessage('SIN is required')
-        .isInt().withMessage('SIN must be an integer');
     req.check('name')
         .notEmpty().withMessage('Name is required')
         .isAscii().withMessage('Name must contain only ASCII characters');
@@ -72,7 +69,6 @@ router.post('/edit/:id', function (req, res) {
         })
     } else {
         let receptionist = {};
-        receptionist._id = req.body.sin;
         receptionist.name = req.body.name;
 
         let query = {_id:req.params.id}

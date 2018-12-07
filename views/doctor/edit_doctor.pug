@@ -3,9 +3,6 @@ block content
     h1 #{title}
     form(action="/doctors/edit/"+doctor._id, method="POST")
         #form-group
-            label SIN:
-            input.form-control(name='sin', type='text', value=doctor._id)
-        #form-group
             label Name:
             input.form-control(name='name', type='text', value=doctor.name)
         #form-group

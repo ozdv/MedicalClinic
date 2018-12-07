@@ -30,13 +30,5 @@ let patientSchema = mongoose.Schema({
     }
 })
 
-// patientSchema.index({
-//     _id: 1
-// }, 
-// {
-//     unique: true,
-//     sparse: true,
-//     background: true
-// })
 // variable 'Patient' matching to schema
 let Patient = module.exports = mongoose.model('Patient', patientSchema);

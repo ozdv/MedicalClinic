@@ -3,9 +3,6 @@ block content
     h1 #{title}
     form(action="/receptionists/edit/"+receptionist._id, method="POST")
         #form-group
-            label SIN:
-            input.form-control(name='sin', type='text', value=receptionist._id)
-        #form-group
             label Name:
             input.form-control(name='name', type='text', value=receptionist.name)
         br

@@ -55,11 +55,8 @@ router.get('/edit/:id', function (req, res) {
     })
 })
 
-// Submit POST route for adding a doctor
+// Submit POST route for editing a doctor
 router.post('/edit/:id', function (req, res) {
-    req.check('sin')
-        .notEmpty().withMessage('SIN is required')
-        .isInt().withMessage('SIN must be an integer');
     req.check('name')
         .notEmpty().withMessage('Name is required')
         .isAscii().withMessage('Name must contain only ASCII characters');
@@ -73,7 +70,6 @@ router.post('/edit/:id', function (req, res) {
         })
     } else {
         let doctor = {};
-        doctor._id = req.body.sin;
         doctor.name = req.body.name;
         doctor.specialization = req.body.specialization;
 
