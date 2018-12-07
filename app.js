@@ -135,6 +135,19 @@ app.get('/patientslist', function(req, res){
     });
 })
 
+app.get('/patientlookup', function(req, res){
+    Patient.find({}, function(err, patients){
+        if(err){
+            consol.log(err);
+        } else{
+            res.render('patientlookup', {
+                title: 'Patient Information',
+                patients: patients
+            });
+        }
+    });
+});
+
 // List of doctors
 app.get('/doctorslist', function(req, res){
     Doctor.find({}, function(err, doctors){

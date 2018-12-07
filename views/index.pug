@@ -3,5 +3,17 @@ extends layout
 block content
 	h1 #{title}
 	br
-	p This is a Medical Clinic CMS
 
+	if user
+		if user.admin == true
+			p You are an administrator of this system
+		else
+			ul.list-group
+				li.list-group-item <b>Health Number:</b> #{user.health_no}
+				li.list-group-item <b>Phone Number:</b> #{user.phone_no}
+				li.list-group-item <b>Street Address:</b> #{user.street_no} #{user.street_name}
+				li.list-group-item <b>City:</b> #{user.city}
+				li.list-group-item <b>Province:</b> #{user.province}
+	else
+		p This is a Medical Clinic CMS
+		p Please log-in to use system

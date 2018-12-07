@@ -19,22 +19,25 @@ html
 				#navbar.collapse.navbar-collapse
 					ul.nav.navbar-nav
 						if user
-							li.dropdown
-								a(href='#',data-toggle='dropdown').dropdown-toggle Patients
-									b.caret
-								ul.dropdown-menu
-									li: a(href='/patientslist') All Patients
-									li: a(href='/patients/add') Add Patient
-							li.dropdown
-								a(href='#',data-toggle='dropdown').dropdown-toggle Medical Staff
-									b.caret
-								ul.dropdown-menu
-									li: a(href='/doctorslist') Doctors
-									li: a(href='/nurseslist') Nurses 
-							li
-								a(href='/') Appointments
-							li
-								a(href='/') Equipment
+							if user.admin
+								li.dropdown
+									a(href='#',data-toggle='dropdown').dropdown-toggle Patients
+										b.caret
+									ul.dropdown-menu
+										li: a(href='/patientslist') All Patients
+										li: a(href='/patients/add') Add Patient
+										li: a(href='/patientlookup') Lookup Patient
+								li.dropdown
+									a(href='#',data-toggle='dropdown').dropdown-toggle Medical Staff
+										b.caret
+									ul.dropdown-menu
+										li: a(href='/doctorslist') Doctors
+										li: a(href='/nurseslist') Nurses 
+								li
+									a(href='/') Appointments
+								li
+									a(href='/') Equipment
+
 					ul.nav.navbar-nav.navbar-right
 						if user
 							li 
@@ -43,9 +46,7 @@ html
 							li
 								a(href='/users/register') Register
 							li
-								a(href='/users/patientlogin') Patient Login
-							li
-								a(href='/users/stafflogin') Staff Login
+								a(href='/users/stafflogin') Login
 
 		br
 		br
