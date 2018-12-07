@@ -229,6 +229,9 @@ app.use('/receptionists', receptionists);
 let nurses = require('./routes/nurses');
 app.use('/nurses', nurses);
 
+let appointments = require('./routes/appointments')
+app.use('/appointments', appointments)
+
 // Start server
 app.listen(3000, function(){
     console.log('Server started on port 3000');

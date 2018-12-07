@@ -2,7 +2,7 @@ extends /layout
 block content
 	h1 Name: #{patient.name}
 	ul.list-group
-		li.list-group-item <b>Health Number:</b> #{patient.health_no}
+		li.list-group-item <b>Health Number:</b> #{patient._id}
 		li.list-group-item <b>Phone Number:</b> #{patient.phone_no}
 		li.list-group-item <b>Street Address:</b> #{patient.street_no} #{patient.street_name}
 		li.list-group-item <b>City:</b> #{patient.city}

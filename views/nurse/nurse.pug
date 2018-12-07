@@ -2,7 +2,7 @@ extends /layout
 block content
     h1 Name: #{nurse.name}
     ul.list-group
-        li.list-group-item <b>SIN:</b> #{nurse.sin}
+        li.list-group-item <b>SIN:</b> #{nurse._id}
         li.list-group-item <b>Start Date:</b> #{moment(nurse.start_date).format('D MMMM YYYY')}
     hr
     a.btn.btn-default(href='/nurses/edit/'+nurse._id) Edit

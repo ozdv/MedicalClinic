@@ -4,7 +4,7 @@ block content
 	form(method='POST', action='/patients/edit/'+patient._id)
 		#form-group
 			label Health Number: 
-			input.form-control(name='health_no', type='text', value=patient.health_no)
+			input.form-control(name='health_no', type='text', value=patient._id)
 		#form-group
 			label Name: 
 			input.form-control(name='name', type='text', value=patient.name)

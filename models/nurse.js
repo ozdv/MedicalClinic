@@ -2,11 +2,8 @@ let mongoose = require('mongoose');
 
 // Nurse schema
 let nurseSchema = mongoose.Schema({
-    sin:{
-        type: Number,
-        required: true,
-        unique: true,
-        dropDups: true
+    _id:{
+        type: Number
     },
     name:{
         type: String,

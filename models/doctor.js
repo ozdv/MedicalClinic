@@ -2,11 +2,8 @@ let mongoose = require('mongoose');
 
 // Doctor schema
 let doctorSchema = mongoose.Schema({
-    sin:{
-        type: Number,
-        required: true,
-        unique: true,
-        dropDups: true
+    _id:{
+        type: Number
     },
     name:{
         type: String,

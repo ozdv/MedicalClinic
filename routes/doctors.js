@@ -28,7 +28,7 @@ router.post('/add', function (req, res) {
         })
     } else {
         let doctor = new Doctor();
-        doctor.sin = req.body.sin;
+        doctor._id = req.body.sin;
         doctor.name = req.body.name;
         doctor.specialization = req.body.specialization;
         doctor.start_date = Date.now();
@@ -73,7 +73,7 @@ router.post('/edit/:id', function (req, res) {
         })
     } else {
         let doctor = {};
-        doctor.sin = req.body.sin;
+        doctor._id = req.body.sin;
         doctor.name = req.body.name;
         doctor.specialization = req.body.specialization;
 

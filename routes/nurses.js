@@ -28,7 +28,7 @@ router.post('/add', function (req, res) {
         })
     } else {
         let nurse = new Nurse();
-        nurse.sin = req.body.sin;
+        nurse._id = req.body.sin;
         nurse.name = req.body.name;
         nurse.start_date = Date.now();
 
@@ -72,7 +72,7 @@ router.post('/edit/:id', function (req, res) {
         })
     } else {
         let nurse = {};
-        nurse.sin = req.body.sin;
+        nurse._id = req.body.sin;
         nurse.name = req.body.name;
 
         let query = {_id:req.params.id}

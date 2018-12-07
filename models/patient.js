@@ -1,12 +1,9 @@
-let mongoose = require('mongoose');
+let mongoose = require('mongoose')
 
 // Patient schema
 let patientSchema = mongoose.Schema({
-    health_no:{
-        type: Number,
-        required: true,
-        unique: true,
-        dropDups: true
+    _id:{
+        type: Number
     },
     name:{
         type: String,
@@ -31,6 +28,15 @@ let patientSchema = mongoose.Schema({
         type: String,
         required: true
     }
-});
+})
+
+// patientSchema.index({
+//     _id: 1
+// }, 
+// {
+//     unique: true,
+//     sparse: true,
+//     background: true
+// })
 // variable 'Patient' matching to schema
 let Patient = module.exports = mongoose.model('Patient', patientSchema);

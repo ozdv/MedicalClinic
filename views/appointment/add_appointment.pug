@@ -1,0 +1,30 @@
+extends /layout
+block content
+    h1 #{title}
+    form(action="/appointments/add", method="POST")
+        #form-group
+            label Patient ID:
+            input.form-control(name='patient_id', type='text')
+        #form-group
+            label Doctor SIN:
+            input.form-control(name='doctor_sin', type='text')
+        #form-group
+            label Receptionist SIN:
+            input.form-control(name='receptionsit_sin', type='text')
+        #form-group
+            label Type:
+            input.form-control(name='type', type='text')
+        #form-group
+            label Purpose:
+            input.form-control(name='purpose', type='text')
+        #form-group
+            label Diagnosis:
+            input.form-control(name='diagnosis', type='text')
+        #form-group
+            label Date:
+            input.form-control(name='date', type='text')
+        #form-group
+            label Time:
+            input.form-control(name='time', type='text')
+        br
+        input.btn.btn-primary(type='submit',value='Submit') 

@@ -49,7 +49,7 @@ router.post('/add', function(req, res){
         });
     } else {
         let patient = new Patient();
-        patient.health_no = req.body.health_no;
+        patient._id = req.body.health_no;
         patient.name = req.body.name;
         patient.phone_no = req.body.phone_no;
         patient.street_no = req.body.street_no;
@@ -117,7 +117,7 @@ router.post('/edit/:id', function(req, res){
         });
     }else{
         let patient = {};
-        patient.health_no = req.body.health_no;
+        patient._id = req.body.health_no;
         patient.name = req.body.name;
         patient.phone_no = req.body.phone_no;
         patient.street_no = req.body.street_no;

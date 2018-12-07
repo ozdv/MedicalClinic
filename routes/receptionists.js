@@ -28,7 +28,7 @@ router.post('/add', function (req, res) {
         })
     } else {
         let receptionist = new Receptionist();
-        receptionist.sin = req.body.sin;
+        receptionist._id = req.body.sin;
         receptionist.name = req.body.name;
         receptionist.start_date = Date.now();
 
@@ -72,7 +72,7 @@ router.post('/edit/:id', function (req, res) {
         })
     } else {
         let receptionist = {};
-        receptionist.sin = req.body.sin;
+        receptionist._id = req.body.sin;
         receptionist.name = req.body.name;
 
         let query = {_id:req.params.id}

@@ -2,19 +2,19 @@ const mongoose = require('mongoose');
 
 let appointmentSchema = mongoose.Schema({
     patient_health_no:{
-        type: mongoose.Schema.Types.health_no,
+        type: mongoose.Types.ObjectId,
         ref:'patients',
         unique: false,
         required: true
     },
     doctor_sin:{
-        type: mongoose.Schema.Types.sin,
+        type: mongoose.Types.ObjectId,
         ref: 'doctors',
         unique: false,
         required: true
     },
     receptionist_sin:{
-        type: mongoose.Schema.Types.sin,
+        type: mongoose.Types.ObjectId,
         ref: 'receptionists',
         unique: false,
         required: true
