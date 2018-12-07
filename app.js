@@ -52,7 +52,8 @@ app.set('views', [path.join(__dirname,'views'),
                     path.join(__dirname, 'views/nurse/'),
                     path.join(__dirname, 'views/doctor/'),
                     path.join(__dirname, 'views/receptionist/'),
-                    path.join(__dirname, 'views/equipment/')]);
+                    path.join(__dirname, 'views/equipment/'),
+                    path.join(__dirname, 'views/appointment/')]);
 app.set('view engine', 'pug');
 
 // Set basedir to use absolute paths
@@ -190,6 +191,20 @@ app.get('/equipment', function(req, res){
             res.render('equipment', {
                 title: 'Equipment',
                 equipment: equipment
+            });
+        }
+    });
+});
+
+// List of appointments
+app.get('/appointments_list', function(req, res){
+    Doctor.find({}, function(err, appointments){
+        if(err){
+            console.log(err);
+        } else{
+            res.render('appointments_list', {
+                title: 'Current Appointments',
+                appointments: appointments
             });
         }
     });

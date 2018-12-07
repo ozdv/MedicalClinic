@@ -1,0 +1,9 @@
+extends /layout
+
+block content
+    h2 #{title}
+    ul.list-group
+        each appt, i in appointments
+            li.list-group-item
+                a(href="/appointments/"+appt._id)= appt.purpose
+    a.btn.btn-default(href='appointments/add') Add Appointment
