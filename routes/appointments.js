@@ -1,5 +1,7 @@
 const express = require('express')
+const mongoose = require('mongoose')
 const router = express.Router()
+const ObjectId = require('mongodb').ObjectID
 
 let Appointment = require('../models/appointment')
 let Patient = require('../models/patient')
@@ -36,12 +38,7 @@ router.get('/add', function (req, res) {
 
 // Submit POST route for adding an appointment
 router.post('/add', function (req, res) {
-    // req.check('sin')
-    //     .notEmpty().withMessage('SIN is required')
-    //     .isInt().withMessage('SIN must be an integer');
-    // req.check('name')
-    //     .notEmpty().withMessage('Name is required')
-    //     .isAscii().withMessage('Name must contain only ASCII characters');
+    // TODO: Add validation 
 
     // Error checking
     let errors = req.validationErrors()
@@ -51,10 +48,13 @@ router.post('/add', function (req, res) {
             errors:errors
         })
     } else {
+        // const p_id = JSON.parse(req.body.patient_id) 
+        // appointment.patient_health_no = mongoose.Types.ObjectId(JSON.parse(req.body.patient_id))
+
         let appointment = new Appointment()
-        appointment.patient_health_no = req.body.patient_id
-        appointment.doctor_sin= req.body.doctor_sin
-        appointment.receptionist_sin= req.body.receptionist_sin
+        appointment._patient = req.body.patient_id
+        appointment._doctor = req.body.doctor_sin
+        appointment._receptionist = req.body.receptionist_sin
         appointment.type = req.body.type
         appointment.purpose = req.body.purpose
         appointment.diagnosis = req.body.diagnosis
@@ -63,7 +63,7 @@ router.post('/add', function (req, res) {
 
         appointment.save(function (err) {
             if (err) {
-                console.log(err)
+                console.log("Adding appointment failed: " + err)
                 return
             } else {
                 req.flash('success', 'Appointment Added')
@@ -76,8 +76,17 @@ router.post('/add', function (req, res) {
 // Get single appointment
 router.get('/:id', function (req, res) {
     Appointment.findById(req.params.id, function (err, appointment) {
-        res.render('appointment', {
-            appointment:appointment
+        Patient.findById(appointment._patient, function (err, patient) {
+            Doctor.findById(appointment._doctor, function (err, doctor) {
+                Receptionist.findById(appointment._receptionist, function (err, receptionist) {
+                    res.render('appointment', {
+                        appointment: appointment,
+                        patient: patient,
+                        doctor: doctor,
+                        receptionist: receptionist
+                    })
+                })
+            })
         })
     })
 })

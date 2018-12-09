@@ -1,9 +1,9 @@
 extends /layout
 block content
     ul.list-group
-        li.list-group-item <b>Patient ID:</b> #{appointment.patient_health_no}
-        li.list-group-item <b>Patient ID:</b> #{appointment.doctor_sin}
-        li.list-group-item <b>Patient ID:</b> #{appointment.receptionist_sin}
+        li.list-group-item <b>Patient Name:</b> #{patient.name}
+        li.list-group-item <b>Doctor Name:</b> #{doctor.name}
+        li.list-group-item <b>Receptionist Name:</b> #{receptionist.name}
         li.list-group-item <b>Date:</b> #{moment(appointment.date_time).format('D MMMM YYYY, h:mm a')}
         li.list-group-item <b>Type:</b> #{appointment.appointment_type}
         li.list-group-item <b>Pupose of Visit:</b> #{appointment.purpose}

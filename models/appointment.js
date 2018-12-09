@@ -1,23 +1,20 @@
 const mongoose = require('mongoose');
 
 let appointmentSchema = mongoose.Schema({
-    patient_health_no:{
-        type: mongoose.Types.ObjectId,
-        ref:'patients',
-        unique: false,
-        required: true
+    _patient:{
+        type: mongoose.Schema.Types.Number,
+        ref:'Patient',
+        unique: false
     },
-    doctor_sin:{
-        type: mongoose.Types.ObjectId,
-        ref: 'doctors',
-        unique: false,
-        required: true
+    _doctor:{
+        type: mongoose.Schema.Types.Number,
+        ref: 'Doctor',
+        unique: false
     },
-    receptionist_sin:{
-        type: mongoose.Types.ObjectId,
-        ref: 'receptionists',
-        unique: false,
-        required: true
+    _receptionist:{
+        type: mongoose.Schema.Types.Number,
+        ref: 'Receptionist',
+        unique: false
     },
     diagnosis:{
         type: String,
@@ -37,6 +34,6 @@ let appointmentSchema = mongoose.Schema({
     }
 })
 
-appointmentSchema.index({patient_health_no: 1, doctor_sin: 1, receptionist_sin: 1}, {unique: true, dropDups: true})
+appointmentSchema.index({_patient: 1, _doctor: 1, _receptionist: 1}, {unique: true, dropDups: true})
 
 let Appointment = module.exports = mongoose.model('Appointment', appointmentSchema)

@@ -5,5 +5,5 @@ block content
     ul.list-group
         each appt, i in appointments
             li.list-group-item
-                a(href="/appointments/"+appt._id)= appt.purpose
-    a.btn.btn-default(href='appointments/add') Add Appointment
+                a(href="/appointments/"+appt._id) Patient ID: #{appt._patient}, Purpose: #{appt.purpose} 
+    a.btn.btn-default(href='/appointments/add') Add Appointment

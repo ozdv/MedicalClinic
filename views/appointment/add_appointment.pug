@@ -14,15 +14,15 @@ block content
                     option(value=doctor._id) #{doctor.name}
         #form-group
             label Select Receptionist:
-            select.form-control(name='receptionsit_sin')
+            select.form-control(name='receptionist_sin')
                 each receptionist, i in receptionists
                     option(value=receptionist._id) #{receptionist.name}
         #form-group
             label Type:
             select.form-control(name='type')
-                option(value="checkup") Checkup
-                option(value="dental") Dental
-                option(value="follow_up") Follow-Up
+                option(name="checkup" value="checkup") Checkup
+                option(name="dental" value="dental") Dental
+                option(name="follow_up" value="follow_up") Follow-Up
         #form-group
             label Purpose:
             input.form-control(name='purpose', type='text')
