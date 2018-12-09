@@ -5,10 +5,12 @@ We are using MongoDB as a database system, Node.js as an alternative to php/apac
 
 ## TODO:
 - ~~Finish add/edit/delete patient~~
-- Finish add/edit/delete medical staff
-  * ~~Doctors~~
+- ~~Finish add/edit/delete medical staff~~
 - Finish add/edit/delete medical equipment
-- Finish add/edit/delete appointments
+- Finish appointments feature
+  * ~~Add appointments~~
+  * Edit appointment
+  * Delete appointment
 - Add patient page:
   * Shows patient appointments (current, and previous)
 
