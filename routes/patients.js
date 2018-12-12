@@ -57,15 +57,24 @@ router.post('/add', function(req, res){
         patient.city = req.body.city;
         patient.province = req.body.province;
 
-        patient.save(function(err){
-            if(err){
-                console.log(err);
-                return;
+        Patient.findById({_id: patient._id}, function (err, existing_patient) {
+            if (err) {
+                console.log('Checking for existing patient failed: ' + err)
+            } if (existing_patient != null) {
+                req.flash('warning', 'This patient health number already exists')
+                res.redirect('back')
             } else {
-                req.flash('success', 'Patient Added');
-                res.redirect('/patientslist/');
+                patient.save(function(err){
+                    if(err){
+                        console.log('Failed to add patient: ' + err);
+                        return
+                    } else {
+                        req.flash('success', 'Patient Added')
+                        res.redirect('/patientslist/')
+                    }
+                })
             }
-        });
+        })
     }
 });
 

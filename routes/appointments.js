@@ -1,7 +1,6 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const router = express.Router()
-const ObjectId = require('mongodb').ObjectID
 
 let Appointment = require('../models/appointment')
 let Patient = require('../models/patient')
@@ -64,7 +63,7 @@ router.post('/add', function (req, res) {
         // Check if this appointment was already made
         Appointment.find({_patient: appointment._patient, _doctor: appointment._doctor, _receptionist: appointment._receptionist}, function (err, existing_appt) {
             if (err) {
-                console.log("Checking for existing appointment faile: " + err)
+                console.log("Checking for existing appointment failed: " + err)
                 return
             } if (existing_appt != null) {
                 req.flash('warning', 'This appointment already exists. Delete the existing one and try again')

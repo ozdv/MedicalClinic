@@ -21,7 +21,6 @@ const session = require('express-session')
 const passport = require('passport')
 const config = require('./config/database')
 
-
 // Connect to database 'medicalclinic'
 mongoose.connect(config.database, { useNewUrlParser: true })
 let db = mongoose.connection
@@ -34,7 +33,7 @@ db.once('open', function(){
 // Check for db error
 db.on('error', function(err){
     console.log(err)
-});
+})
 
 // Initializes app so we can create routes
 const app = express()
