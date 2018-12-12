@@ -47,9 +47,6 @@ router.post('/add', function (req, res) {
             errors:errors
         })
     } else {
-        // const p_id = JSON.parse(req.body.patient_id) 
-        // appointment.patient_health_no = mongoose.Types.ObjectId(JSON.parse(req.body.patient_id))
-
         let appointment = new Appointment()
         appointment._patient = req.body.patient_id
         appointment._doctor = req.body.doctor_sin
@@ -57,15 +54,14 @@ router.post('/add', function (req, res) {
         appointment.type = req.body.type
         appointment.purpose = req.body.purpose
         appointment.diagnosis = req.body.diagnosis
-        // TODO - Make date and time set by user instead of using current time/date
-        appointment.date_time = Date.now()
+        appointment.date_time = req.body.date + 'T' + req.body.time + 'Z'
 
         // Check if this appointment was already made
-        Appointment.find({_patient: appointment._patient, _doctor: appointment._doctor, _receptionist: appointment._receptionist}, function (err, existing_appt) {
+        Appointment.findOne({_patient: appointment._patient, _doctor: appointment._doctor, _receptionist: appointment._receptionist}, function (err, existing_appt) {
             if (err) {
                 console.log("Checking for existing appointment failed: " + err)
                 return
-            } if (existing_appt != null) {
+            } if (existing_appt) {
                 req.flash('warning', 'This appointment already exists. Delete the existing one and try again')
                 res.redirect('back')
             } else {
