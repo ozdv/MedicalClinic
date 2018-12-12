@@ -32,15 +32,25 @@ router.post('/add', function (req, res) {
         receptionist.name = req.body.name;
         receptionist.start_date = Date.now();
 
-        receptionist.save(function (err) {
+        Receptionist.findById({_id: receptionist._id}, function (err, existing_recp) {
             if (err) {
-                console.log(err)
+                console.log('Check for existing receptionist failed: ' + err)
                 return
+            } if (existing_recp != null) {
+                req.flash('warning', 'This receptionist SIN number already exists')
+                res.redirect('back')
             } else {
-                req.flash('success', 'Receptionist Added')
-                res.redirect('/receptionistslist/')
+                receptionist.save(function (err) {
+                    if (err) {
+                        console.log('Failed to add receptionist: ' + err)
+                        return
+                    } else {
+                        req.flash('success', 'Receptionist Added')
+                        res.redirect('/receptionistslist/')
+                    }
+                })
             }
-        })
+        })        
     }
 })
 

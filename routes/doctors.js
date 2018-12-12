@@ -35,9 +35,9 @@ router.post('/add', function (req, res) {
 
         Doctor.findById({_id: doctor._id}, function (err, existing_doctor) {
             if (err) {
-                console.log('Checking for existing doctor failed: ' + err)
+                console.log('Check for existing doctor failed: ' + err)
                 return
-            } if (existing_patient != null) {
+            } if (existing_doctor != null) {
                 req.flash('warning', 'This doctor SIN number already exists')
                 res.redirect('back')
             } else {

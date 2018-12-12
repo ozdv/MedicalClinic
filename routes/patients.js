@@ -59,7 +59,7 @@ router.post('/add', function(req, res){
 
         Patient.findById({_id: patient._id}, function (err, existing_patient) {
             if (err) {
-                console.log('Checking for existing patient failed: ' + err)
+                console.log('Check for existing patient failed: ' + err)
                 return
             } if (existing_patient != null) {
                 req.flash('warning', 'This patient health number already exists')

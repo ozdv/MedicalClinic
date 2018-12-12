@@ -32,13 +32,23 @@ router.post('/add', function (req, res) {
         nurse.name = req.body.name;
         nurse.start_date = Date.now();
 
-        nurse.save(function (err) {
+        Nurse.findById({_id: nurse._id}, function (err, existing_nurse) {
             if (err) {
-                console.log(err)
+                console.log('Check for existing nurse failed: ' + err)
                 return
+            } if (existing_nurse != null) {
+                req.flash('warning', 'This nurse SIN number already exists')
+                res.redirect('back')
             } else {
-                req.flash('success', 'Nurse Added')
-                res.redirect('/nurseslist/')
+                nurse.save(function (err) {
+                    if (err) {
+                        console.log('Failed to add nurse: ' + err)
+                        return
+                    } else {
+                        req.flash('success', 'Nurse Added')
+                        res.redirect('/nurseslist/')
+                    }
+                })
             }
         })
     }
