@@ -33,13 +33,23 @@ router.post('/add', function (req, res) {
         doctor.specialization = req.body.specialization;
         doctor.start_date = Date.now();
 
-        doctor.save(function (err) {
+        Doctor.findById({_id: doctor._id}, function (err, existing_doctor) {
             if (err) {
-                console.log(err)
+                console.log('Checking for existing doctor failed: ' + err)
                 return
+            } if (existing_patient != null) {
+                req.flash('warning', 'This doctor SIN number already exists')
+                res.redirect('back')
             } else {
-                req.flash('success', 'Doctor Added')
-                res.redirect('/doctorslist/')
+                doctor.save(function (err) {
+                    if (err) {
+                        console.log('Failed to add doctor: ' + err)
+                        return
+                    } else {
+                        req.flash('success', 'Doctor Added')
+                        res.redirect('/doctorslist/')
+                    }
+                })
             }
         })
     }
