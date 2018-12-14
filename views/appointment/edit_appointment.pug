@@ -1,0 +1,15 @@
+extends /layout
+block content
+    h1 #{title}
+    form(action="/appointments/edit/"+appointment._id, method="POST")
+        #form-group
+            label Name:
+            input.form-control(name='name', type='text', value=doctor.name)
+        #form-group
+            label Phone number: 
+            input.form-control(name='phone_no', type='text', value=doctor.phone_no)
+        #form-group
+            label Specializations:
+            input.form-control(name='specialization', type='text', value=doctor.specialization)
+        br
+        input.btn.btn-primary(type='submit',value='Submit')

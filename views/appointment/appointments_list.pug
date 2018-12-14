@@ -3,7 +3,7 @@ extends /layout
 block content
     h2 #{title}
     ul.list-group
-        each appt, i in appointments
+        each appointment, i in appointments
             li.list-group-item
-                a(href="/appointments/"+appt._id) Patient ID: #{appt._patient}, Purpose: #{appt.purpose} 
+                a(href="/appointments/"+appointment._id) Patient ID: #{appointment._patient}, Purpose: #{appointment.purpose} 
     a.btn.btn-default(href='/appointments/add') Add Appointment

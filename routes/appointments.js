@@ -79,6 +79,18 @@ router.post('/add', function (req, res) {
     }
 })
 
+// Delete selected appointment
+router.delete('/:id', function (req, res) {
+    let query = {_id:req.params.id}
+
+    Appointment.deleteOne(query, function (err) {
+        if (err) {
+            console.log(err)
+        }
+        res.send('success')
+    })
+})
+
 // Get single appointment
 router.get('/:id', function (req, res) {
     Appointment.findById(req.params.id, function (err, appointment) {

@@ -9,5 +9,4 @@ block content
         li.list-group-item <b>Pupose of Visit:</b> #{appointment.purpose}
         li.list-group-item <b>Diagnosis:</b> #{appointment.diagnosis}
     hr
-    a.btn.btn-default(href='/appointments/edit/'+appointment._id) Edit
-    a.btn.btn-danger.delete-doctor(href='#',data-id=appointment._id) Delete
+    a.btn.btn-danger.delete-appointment(href='#',data-id=appointment._id) Delete

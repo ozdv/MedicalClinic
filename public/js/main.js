@@ -93,3 +93,22 @@ $(document).ready(function () {
 		})
 	})
 })
+
+// Delete appointment call
+$(document).ready(function () {
+	$('.delete-appointment').on('click', function (e) {
+		$target = $(e.target)
+		const id = $target.attr('data-id')
+		$.ajax({
+			type:'DELETE',
+			url: '/appointments/'+id,
+			success: function(response){
+				alert('Deleting Appointment')
+				window.location.href='/appointments_list/'
+			},
+			error: function(err){
+				console.log(err);
+			}
+		})
+	})
+})
