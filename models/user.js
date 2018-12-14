@@ -20,6 +20,7 @@ const UserSchema = mongoose.Schema({
 	},
     health_no:{
         type: Number,
+        unique: true,
         required: true
     },
 	admin:{

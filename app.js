@@ -118,7 +118,7 @@ app.get('*', function(req, res, next){
 
 // Home '/' route 
 app.get('/', function(req, res){
-    Patient.findOne(user.health_no, function(err, patients){
+    Patient.find({}, function(err, patients){
         if(err){
             console.log(err);
         } else{
