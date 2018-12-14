@@ -20,10 +20,14 @@ const flash = require('connect-flash')
 const session = require('express-session')
 const passport = require('passport')
 const config = require('./config/database')
+const user = require('./models/user');
 
 // Connect to database 'medicalclinic'
 mongoose.connect(config.database, { useNewUrlParser: true })
+
 let db = mongoose.connection
+
+
 
 // Check db connection
 db.once('open', function(){
@@ -43,7 +47,7 @@ let Patient = require('./models/patient')
 let Doctor = require('./models/doctor')
 let Nurse = require('./models/nurse')
 let Receptionists = require('./models/receptionist')
-let Equipment = require('./models/equipment')
+let Equipments = require('./models/equipment')
 let Appointment = require('./models/appointment')
 
 // Load view engine
@@ -114,7 +118,7 @@ app.get('*', function(req, res, next){
 
 // Home '/' route 
 app.get('/', function(req, res){
-    Patient.find({}, function(err, patients){
+    Patient.findOne(user.health_no, function(err, patients){
         if(err){
             console.log(err);
         } else{
@@ -183,14 +187,14 @@ app.get('/receptionistslist', function(req, res){
 })
 
 // List of equipment
-app.get('/equipment', function(req, res){
-    Equipment.find({}, function(err, equipment){
+app.get('/equipmentslist', function(req, res){
+    Equipments.find({}, function(err, equipments){
         if(err){
             console.log(err)
         } else{
-            res.render('equipment', {
+            res.render('equipmentslist', {
                 title: 'Equipment',
-                equipment: equipment
+                equipments: equipments
             })
         }
     })
@@ -214,8 +218,8 @@ app.get('/appointments_list', function(req, res){
 let patients = require('./routes/patients')
 app.use('/patients', patients)
 
-let equipment = require('./routes/equipment')
-app.use('/equipment', equipment)
+let equipments = require('./routes/equipments')
+app.use('/equipments', equipments)
 
 let users = require('./routes/users')
 app.use('/users', users)

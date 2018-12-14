@@ -18,6 +18,9 @@ router.post('/add', function (req, res) {
     req.check('name')
         .notEmpty().withMessage('Name is required')
         .isAscii().withMessage('Name must contain only ASCII characters');
+    req.check('phone_no')
+        .notEmpty().withMessage('Phone number is required')
+        .isMobilePhone().withMessage('Phone number must be a valid phone number');
 
     // Error checking
     let errors = req.validationErrors()
@@ -30,6 +33,7 @@ router.post('/add', function (req, res) {
         let receptionist = new Receptionist();
         receptionist._id = req.body.sin;
         receptionist.name = req.body.name;
+        receptionist.phone_no = req.body.phone_no;
         receptionist.start_date = Date.now();
 
         Receptionist.findById({_id: receptionist._id}, function (err, existing_recp) {
@@ -80,6 +84,7 @@ router.post('/edit/:id', function (req, res) {
     } else {
         let receptionist = {};
         receptionist.name = req.body.name;
+        receptionist.phone_no = req.body.phone_no;
 
         let query = {_id:req.params.id}
 

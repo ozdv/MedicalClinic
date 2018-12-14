@@ -8,7 +8,7 @@ let Patient = require('../models/patient');
 let User = require('../models/user');
 
 // Add patient route (url/patients/add)
-router.get('/add', function(req, res){
+router.get('/add', ensureAuthenticated, function(req, res){
     res.render('add_patient', {
         title: 'Add Patient'
     });
@@ -80,7 +80,7 @@ router.post('/add', function(req, res){
 });
 
 // Load Edit Form
-router.get('/edit/:id', function(req, res){
+router.get('/edit/:id', ensureAuthenticated, function(req, res){
     Patient.findById(req.params.id, function(err, patient){
         res.render('edit_patient', {
             title:'Edit patient',
@@ -145,6 +145,7 @@ router.post('/edit/:id', function(req, res){
     }
 });
 
+
 // Delete selected patient
 router.delete('/:id', function(req, res){
     let query = {_id:req.params.id}
@@ -158,12 +159,22 @@ router.delete('/:id', function(req, res){
 });
 
 // Get single patient
-router.get('/:id', function(req, res){
-    Patient.findById(req.params.id, function(err, patient){
-        res.render('patient', {
-            patient:patient
+router.get('/:id', function(req, res){                          // load page patients/id
+    Patient.findById(req.params.id, function(err, patient){     // finds patient by id
+        res.render('patient', {                                 // render patient.pug
+            patient:patient                                     // throw in patient as arguement
         });
     });
 });
+
+// Access Control: Ensures user is authenticated
+function ensureAuthenticated(req, res, next){
+    if(req.isAuthenticated()){
+        return next();
+    } else {
+        req.flash('danger', 'Please login');
+        res.redirect('/users/login');
+    }
+}
 
 module.exports = router;

@@ -1,0 +1,9 @@
+extends /layout
+
+block content
+    h2 #{title}
+    ul.list-group
+        each equipment, i in equipments
+            li.list-group-item
+                a(href="/equipments/"+equipment._id)= equipment.name
+    a.btn.btn-default(href='/equipments/add/') Add equipment

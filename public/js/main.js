@@ -54,3 +54,42 @@ $(document).ready(function () {
 		})
 	})
 })
+
+
+// Delete receptionist call
+$(document).ready(function () {
+	$('.delete-receptionist').on('click', function (e) {
+		$target = $(e.target)
+		const id = $target.attr('data-id')
+		$.ajax({
+			type:'DELETE',
+			url: '/receptionists/'+id,
+			success: function(response){
+				alert('Deleting Receptionist')
+				window.location.href='/receptionistslist/'
+			},
+			error: function(err){
+				console.log(err);
+			}
+		})
+	})
+})
+
+// Delete equipment call
+$(document).ready(function () {
+	$('.delete-equipment').on('click', function (e) {
+		$target = $(e.target)
+		const id = $target.attr('data-id')
+		$.ajax({
+			type:'DELETE',
+			url: '/equipments/'+id,
+			success: function(response){
+				alert('Deleting Equipment')
+				window.location.href='/equipmentslist/'
+			},
+			error: function(err){
+				console.log(err);
+			}
+		})
+	})
+})

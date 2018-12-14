@@ -1,0 +1,9 @@
+extends /layout
+block content
+    h1 Name: #{equipment.name}
+    ul.list-group
+        li.list-group-item <b>Equipment ID:</b> #{equipment._id}
+        li.list-group-item <b>Quantity:</b> #{equipment.quantity}
+    hr
+    a.btn.btn-default(href='/equipments/edit/'+equipment._id) Edit
+    a.btn.btn-danger.delete-equipment(href='#',data-id=equipment._id) Delete

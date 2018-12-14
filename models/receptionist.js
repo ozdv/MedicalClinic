@@ -9,6 +9,9 @@ let receptionistSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    phone_no:{
+        type: String
+    },
     start_date:{
         type: Date,
         required: true

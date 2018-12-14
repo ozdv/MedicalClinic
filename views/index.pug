@@ -6,13 +6,15 @@ block content
 			h1 Welcome, #{user.name}
 			p You are an administrator of this system
 		else
-			h1 Patient Profile
+			h1 Welcome, #{user.name}
 			ul.list-group
-				li.list-group-item <b>Health Number:</b> #{user.health_no}
-				li.list-group-item <b>Phone Number:</b> #{user.phone_no}
-				li.list-group-item <b>Street Address:</b> #{user.street_no} #{user.street_name}
-				li.list-group-item <b>City:</b> #{user.city}
-				li.list-group-item <b>Province:</b> #{user.province}
+				li.list-group-item <b>Health Number:</b> #{patient._id}
+				li.list-group-item <b>Phone Number:</b> #{patient.phone_no}
+				li.list-group-item <b>Street Address:</b> #{patient.street_no} #{patient.street_name}
+				li.list-group-item <b>City:</b> #{patient.city}
+				li.list-group-item <b>Province:</b> #{patient.province}
+
+			hr
 	else
 		h1 #{title}
 		p This is a Medical Clinic CMS

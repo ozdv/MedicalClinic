@@ -1,0 +1,12 @@
+extends /layout
+block content
+    h1 #{title}
+    form(action="/equipments/add", method="POST")
+        #form-group
+            label Name:
+            input.form-control(name='name', type='text')
+        #form-group
+            label Quantity:
+            input.form-control(name='quantity', type='text')
+        br
+        input.btn.btn-primary(type='submit',value='Submit') 

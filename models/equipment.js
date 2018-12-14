@@ -6,9 +6,9 @@ let equipmentSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    amount:{
+    quantity:{
         type: String,
-        default: true
+        required: true
     },
 })
 

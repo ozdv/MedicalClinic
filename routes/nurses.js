@@ -18,7 +18,10 @@ router.post('/add', function (req, res) {
     req.check('name')
         .notEmpty().withMessage('Name is required')
         .isAscii().withMessage('Name must contain only ASCII characters');
-
+    req.check('phone_no')
+        .notEmpty().withMessage('Phone number is required')
+        .isMobilePhone().withMessage('Phone number must be a valid phone number');
+        
     // Error checking
     let errors = req.validationErrors()
     if (errors) {
@@ -30,6 +33,7 @@ router.post('/add', function (req, res) {
         let nurse = new Nurse();
         nurse._id = req.body.sin;
         nurse.name = req.body.name;
+        nurse.phone_no = req.body.phone_no;
         nurse.start_date = Date.now();
 
         Nurse.findById({_id: nurse._id}, function (err, existing_nurse) {
@@ -80,7 +84,8 @@ router.post('/edit/:id', function (req, res) {
     } else {
         let nurse = {};
         nurse.name = req.body.name;
-
+        nurse.phone_no = req.body.phone_no;
+        
         let query = {_id:req.params.id}
 
         Nurse.updateOne(query, nurse, function (err) {

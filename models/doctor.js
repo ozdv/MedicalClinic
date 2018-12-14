@@ -13,6 +13,9 @@ let doctorSchema = mongoose.Schema({
         type: String,
         default: 'None'
     },
+    phone_no:{
+        type: String
+    },
     start_date:{
         type: Date,
         required: true
