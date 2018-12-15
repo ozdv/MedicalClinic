@@ -1,0 +1,4 @@
+{"_id":111111111,"specialization":"Music, Beats","name":"Dr. Dre","start_date":{"$date":"1995-12-12T04:30:59.363Z"},"__v":0}
+{"_id":123456789,"specialization":"Magic, Superheroism","name":"Dr. Strange","start_date":{"$date":"1990-12-07T17:59:40.720Z"},"__v":0}
+{"_id":999687354,"specialization":"Teeth, Back pain","name":"Dr. Joe","start_date":{"$date":"2000-11-23T17:59:40.720Z"},"__v":0}
+{"_id":576123987,"specialization":"Chest pain","name":"Dr. Nancy","start_date":{"$date":"2008-10-17T17:59:40.720Z"},"__v":0}

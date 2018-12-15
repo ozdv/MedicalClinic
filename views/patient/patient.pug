@@ -10,6 +10,5 @@ block content
         li.list-group-item <b>Province:</b> #{patient.province}
     hr
     a.btn.btn-default(href='/patients/edit/'+patient._id) Edit
-    a.btn.btn-default(href='/medical_history/patient_history/'+patient._id) View Medical History
     if user.admin
         a.btn.btn-danger.delete-patient(href='#',data-id=patient._id) Delete

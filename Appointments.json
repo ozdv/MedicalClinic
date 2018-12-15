@@ -1,0 +1,7 @@
+{"_id":{"$oid":"5c0d625034160a358b13de7d"},"_patient":2,"_doctor":123456789,"_receptionist":13453213,"purpose":"tooth ache","diagnosis":"too much crime fighting","date_time":{"$date":"2018-12-09T18:43:28.982Z"},"__v":0}
+{"_id":{"$oid":"5c0d633134160a358b13de7f"},"_patient":4,"_doctor":123456789,"_receptionist":13453213,"purpose":"had a stomach problem","diagnosis":"too much kryptonite ","date_time":{"$date":"2018-12-09T18:47:13.562Z"},"__v":0}
+{"_id":{"$oid":"5c1076b89f20044d74647255"},"_patient":4,"_doctor":123456789,"_receptionist":123456231,"purpose":"dislocated shoulder","diagnosis":"everything is in place","date_time":{"$date":"2018-12-12T02:47:20.391Z"},"__v":0}
+{"_id":{"$oid":"5c10971c4753aa02984a9273"},"_patient":2,"_doctor":123456789,"_receptionist":111222333,"purpose":"Nothing","diagnosis":"nothing","date_time":{"$date":"2018-12-12T00:00:00.000Z"},"__v":0}
+{"_id":{"$oid":"5c10975f4753aa02984a9275"},"_patient":3,"_doctor":111111111,"_receptionist":123456231,"purpose":"tooth cavity","diagnosis":"needs a filling","date_time":{"$date":"2019-01-09T00:00:00.000Z"},"__v":0}
+{"_id":{"$oid":"5c1099958873fb0840f90df6"},"_patient":1,"_doctor":111111111,"_receptionist":13453213,"purpose":"dislocated shoulder","diagnosis":"needs exercise","date_time":{"$date":"2018-12-15T11:15:00.000Z"},"__v":0}
+{"_id":{"$oid":"5c1099da8873fb0840f90df7"},"_patient":4,"_doctor":111111111,"_receptionist":111222333,"purpose":"had a stomach problem","diagnosis":"fights villains too much","date_time":{"$date":"2018-12-14T06:06:00.000Z"},"__v":0}
