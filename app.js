@@ -49,6 +49,7 @@ let Nurse = require('./models/nurse')
 let Receptionists = require('./models/receptionist')
 let Equipments = require('./models/equipment')
 let Appointment = require('./models/appointment')
+// let MedHistory = require('./models/medical_history')
 
 // Load view engine
 app.set('views', [path.join(__dirname,'views'),
@@ -57,7 +58,10 @@ app.set('views', [path.join(__dirname,'views'),
                     path.join(__dirname, 'views/doctor/'),
                     path.join(__dirname, 'views/receptionist/'),
                     path.join(__dirname, 'views/equipment/'),
-                    path.join(__dirname, 'views/appointment/')]);
+                    path.join(__dirname, 'views/appointment/'),
+                    // path.join(__dirname, 'views/medical_history/'),
+                    // path.join(__dirname, 'views/medical_record/')
+                ])
 app.set('view engine', 'pug')
 
 // Set basedir to use absolute paths
@@ -214,6 +218,20 @@ app.get('/appointments_list', function(req, res){
     })
 })
 
+// List of patient records
+app.get('/all_patients', function(req, res){
+    Patient.find({}).sort({_id:'asc'}).exec(function(err, patients){
+        if(err){
+            console.log(err)
+        } else{
+            res.render('all_patients', {
+                title: 'Select Patient to View Medical History',
+                patients: patients
+            })
+        }
+    })
+})
+
 // Route files
 let patients = require('./routes/patients')
 app.use('/patients', patients)
@@ -235,6 +253,12 @@ app.use('/nurses', nurses)
 
 let appointments = require('./routes/appointments')
 app.use('/appointments', appointments)
+
+// let medical_histories = require('./routes/medical_histories')
+// app.use('/medical_histories', medical_histories)
+
+// let medical_records = require('./routes/medical_records')
+// app.use('/medical_records', medical_records)
 
 // Start server
 app.listen(3000, function(){

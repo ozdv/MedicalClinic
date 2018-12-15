@@ -1,0 +1,10 @@
+extends /layout
+
+block content
+    h1 History of Patient: #{patient.name}
+    ul.list-group
+        each h, i in history
+            li.list-group-item
+                a(href="/patients/record/"+h._record_id) Record ID: #{h._record_id}, Created: #{moment(h.date_time).format('D MMMM YYYY, h:mm a')}
+
+    a.btn.btn-default(href='/patients/add_record/'+patient._id) Add Record 

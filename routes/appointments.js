@@ -6,6 +6,8 @@ let Appointment = require('../models/appointment')
 let Patient = require('../models/patient')
 let Doctor = require('../models/doctor')
 let Receptionist = require('../models/receptionist')
+let MedHistory = require('../models/medical_history')
+let MedRecord = require('../models/medical_record')
 
 // Add appointment
 router.get('/add', function (req, res) {

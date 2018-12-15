@@ -1,0 +1,19 @@
+extends /layout
+
+block content
+    h3 #{title}
+    form(action="/patients/add_record/"+patient._id, method="POST")
+        #form-group
+            label Record ID:
+            input.form-control(name='record_id', type='text')
+        #form-group
+            label Diagnosis:
+            input.form-control(name='diagnosis', type='text')
+        #form-group
+            label Prescribed Medication:
+            input.form-control(name='meds', type='text')
+        #form-group
+            label Notes:
+            input.form-control(name='notes', type='text')
+        br
+        input.btn.btn-primary(type='submit',value='Submit') 

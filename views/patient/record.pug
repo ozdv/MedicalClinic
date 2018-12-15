@@ -1,0 +1,12 @@
+extends /layout
+
+block content
+    h2 Viewing Record #{record._id} For Patient #{history._patient_no}
+    ul.list-group
+        li.list-group-item <b>Record ID:</b> #{record._id}
+        li.list-group-item <b>Diagnosis:</b> #{record.diagnosis}
+        li.list-group-item <b>Prescribed Medication:</b> #{record.prescribed_meds}
+        li.list-group-item <b>Notes:</b> #{record.notes}
+    hr
+    //- a.btn.btn-default(href='/records/edit/'+record._id) Edit
+    a.btn.btn-danger.delete-record(href='#',data-id=record._id) Delete

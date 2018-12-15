@@ -1,14 +1,15 @@
 extends /layout
 
 block content
-	if user
-		if user.admin == true
-			h2 #{title}
-			ul.list-group
-				each patient, i in patients
-					li.list-group-item
-						a(href="/patients/"+patient._id)= patient.name
-			a.btn.btn-default(href='/patients/add/') Add Patient 
+    if user
+        if user.admin == true
+            h2 #{title}
+            ul.list-group
+                each patient, i in patients
+                    li.list-group-item
+                        a(href="/patients/"+patient._id)= patient.name
+                        //- a.btn.btn-default(href='/patients/add/') View History
+            a.btn.btn-default(href='/patients/add/') Add Patient 
 
-	else
-		p Please login to use the system
+    else
+        p Please login to use the system

@@ -1,9 +1,11 @@
 const express = require('express');
 const router = express.Router();
 
-// Patient Model
+// Required Models
 let Patient = require('../models/patient');
 let Appointment = require('../models/appointment')
+let MedHistory = require('../models/medical_history')
+let MedRecord = require('../models/medical_record')
 
 // User Model
 let User = require('../models/user');
@@ -12,8 +14,8 @@ let User = require('../models/user');
 router.get('/add', ensureAuthenticated, function(req, res){
     res.render('add_patient', {
         title: 'Add Patient'
-    });
-});
+    })
+})
 
 // Add Submit POST Route for adding a patient
 router.post('/add', function(req, res){
@@ -78,7 +80,7 @@ router.post('/add', function(req, res){
             }
         })
     }
-});
+})
 
 // Load Edit Form
 router.get('/edit/:id', ensureAuthenticated, function(req, res){
@@ -164,6 +166,99 @@ router.delete('/:id', function(req, res){
                 }
             })
         }
+    })
+})
+
+// View patient medical history
+router.get('/history/:id', function (req, res) {
+    MedHistory.find({_patient_no: req.params.id}).sort({date_time:'asc'}).exec(function (err, history) {
+        Patient.findById(req.params.id, function(err, patient){
+            res.render('patient_history', {  
+                title: 'Medical History',
+                patient:patient,
+                history:history                   
+            })
+        })
+    })
+})
+
+// Add single patient record
+router.get('/add_record/:id', function(req, res){
+    Patient.findById(req.params.id, function(err, patient){
+        res.render('add_record', {  
+            title: 'Add Record For Patient: ' + req.params.id,
+            patient:patient,
+        })
+    })
+})
+
+// Add Submit POST Route for adding a record
+router.post('/add_record/:id', function(req, res){
+    let patient_id = req.params.id
+    // Form input validation
+    req.check('record_id')
+        .notEmpty().withMessage('Record ID is required')
+        .isInt().withMessage('Record ID must be an integer')
+
+    // Error checking
+    let errors = req.validationErrors();
+    if(errors){
+        res.render('add_record', {
+            title: 'Add Record For Patient: ' + patient_id,
+            errors:errors
+        })
+    } else {
+        // Generate record
+        let record = new MedRecord()
+        record._id = req.body.record_id
+        record.diagnosis = req.body.diagnosis
+        record.prescribed_meds = req.body.meds
+        record.notes = req.body.notes
+
+        // Add record to history
+        let history = new MedHistory()
+        history._patient_no = patient_id
+        history._record_id = record._id
+        history.date_time = Date.now()
+
+        MedRecord.findById({_id: record._id}, function (err, existing_record) {
+            if (err) {
+                console.log('Check for existing record failed: ' + err)
+                return
+            } if (existing_record != null) {
+                req.flash('warning', 'Record ID already exists')
+                res.redirect('back')
+            } else {
+                record.save(function(err){
+                    if(err){
+                        console.log('Failed to add record: ' + err);
+                        return
+                    } else {
+                        history.save(function (err) {
+                            if (err) {
+                                console.log('Failed to add record history: ' + err);
+                                return
+                            } else {
+                                req.flash('success', 'Record Added')
+                                res.redirect('/patients/history/'+patient_id)
+                            }
+                        })
+                    }
+                })
+            }
+        })     
+    }
+})
+
+// View single record
+router.get('/record/:id', function (req, res) {
+    MedHistory.findOne({_record_id:req.params.id}, function (err, history) {
+        MedRecord.findById(req.params.id, function (err, record) {
+            res.render('record', {
+                record:record,
+                history:history
+            })
+        })    
     })
 })
 
