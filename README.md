@@ -6,13 +6,18 @@ We are using MongoDB as a database system, Node.js as an alternative to php/apac
 ## TODO:
 - ~~Finish add/edit/delete patient~~
 - ~~Finish add/edit/delete medical staff~~
-- Finish add/edit/delete medical equipment
+- ~~Finish add/edit/delete medical equipment~~
 - Finish appointments feature
   * ~~Add appointments~~
   * Edit appointment
   * Delete appointment
 - Add patient page:
+  * ~~Shows patient information, and can edit~~
   * Shows patient appointments (current, and previous)
+- Add Medical Records page
+  * Add to patient view for admins
+  * Add to patient view for patients
+- Block patients/non users from accessing lists pages, edit pages, and records
 
 
 

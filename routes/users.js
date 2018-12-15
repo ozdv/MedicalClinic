@@ -6,6 +6,7 @@ const passport = require('passport');
 // Bring in User model
 let User = require('../models/user');
 
+let Patient = require('../models/patient');
 // Register Form
 router.get('/register', function(req, res){
 	res.render('register');
@@ -69,12 +70,26 @@ router.get('/login', function(req, res){
 
 // Login proccess
 router.post('/login', function(req, res, next){
-	passport.authenticate('local', {
-		successRedirect:'/',
-		failureRedirect:'/users/login/',
-		failureFlash: true
+	passport.authenticate('local', function(err, user, info) {
+		if (err) { return next(err); }
+		if (!user) { 
+			req.flash('danger', 'Incorrect username or password');
+			return res.redirect('/users/login/'); }
+		req.logIn(user, function(err) {
+			if (err) { return next(err); }
+			if (user.admin) { return res.redirect('/'); }
+			if (!user.admin) { 
+			    Patient.findOne(user.health_no, function(err, patient){
+			        res.redirect('/patients/' + user.health_no);
+			    });
+			}
+
+		});
 	})(req, res, next);
 });
+
+
+
 
 // Logout
 router.get('/logout', function(req, res){
