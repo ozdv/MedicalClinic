@@ -8,5 +8,4 @@ block content
         li.list-group-item <b>Prescribed Medication:</b> #{record.prescribed_meds}
         li.list-group-item <b>Notes:</b> #{record.notes}
     hr
-    //- a.btn.btn-default(href='/records/edit/'+record._id) Edit
     a.btn.btn-danger.delete-record(href='#',data-id=record._id) Delete

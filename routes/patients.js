@@ -262,6 +262,26 @@ router.get('/record/:id', function (req, res) {
     })
 })
 
+// Delete selected record
+router.delete('/record/:id', function(req, res){
+    let record_query = {_id:req.params.id}
+    let history_query = {_record_id:req.params.id}
+
+    MedRecord.deleteOne(record_query, function(err){
+        if(err){
+            console.log(err)
+        } else{
+            MedHistory.deleteOne(history_query, function (err) {
+                if (err) {
+                    console.log(err)
+                } else {
+                    res.send('success')
+                }
+            })
+        }
+    })
+})
+
 // Get single patient
 router.get('/:id', function(req, res){                          // load page patients/id
     Patient.findById(req.params.id, function(err, patient){     // finds patient by id

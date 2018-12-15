@@ -112,3 +112,22 @@ $(document).ready(function () {
 		})
 	})
 })
+
+// Delete record call
+$(document).ready(function () {
+	$('.delete-record').on('click', function (e) {
+		$target = $(e.target)
+		const id = $target.attr('data-id')
+		$.ajax({
+			type:'DELETE',
+			url: '/patients/record/'+id,
+			success: function(response){
+				alert('Deleting Record')
+				window.location.href='/all_patients/'
+			},
+			error: function(err){
+				console.log(err);
+			}
+		})
+	})
+})

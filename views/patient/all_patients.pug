@@ -8,7 +8,6 @@ block content
                 each patient, i in patients
                     li.list-group-item
                         a(href="/patients/history/"+patient._id) Health Number: #{patient._id}, Name: #{patient.name}
-            //- a.btn.btn-default(href='/patients/add/') Add Patient 
 
     else
         p Please login to use the system
