@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 let Receptionist = require('../models/receptionist');
+let Appointment = require('../models/appointment')
 
 // Add Receptionist
 router.get('/add', function (req, res) {
@@ -102,13 +103,21 @@ router.post('/edit/:id', function (req, res) {
 
 // Delete selected receptionist
 router.delete('/:id', function (req, res) {
-    let query = {_id:req.params.id}
+    let recep_query = {_id:req.params.id}
+    let appt_query = {_receptionist:req.params.id}
 
-    Receptionist.deleteOne(query, function (err) {
+    Receptionist.deleteOne(recep_query, function (err) {
         if (err) {
             console.log(err)
+        } else{
+            Appointment.deleteMany(appt_query, function (err) {
+                if (err) {
+                    console.log(err)
+                } else {
+                    res.send('success')
+                }
+            })
         }
-        res.send('success')
     })
 })
 

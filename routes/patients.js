@@ -3,6 +3,7 @@ const router = express.Router();
 
 // Patient Model
 let Patient = require('../models/patient');
+let Appointment = require('../models/appointment')
 
 // User Model
 let User = require('../models/user');
@@ -148,15 +149,23 @@ router.post('/edit/:id', function(req, res){
 
 // Delete selected patient
 router.delete('/:id', function(req, res){
-    let query = {_id:req.params.id}
+    let patient_query = {_id:req.params.id}
+    let appt_query = {_patient:req.params.id}
 
-    Patient.deleteOne(query, function(err){
+    Patient.deleteOne(patient_query, function(err){
         if(err){
-            console.log(err);
+            console.log(err)
+        } else{
+            Appointment.deleteMany(appt_query, function (err) {
+                if (err) {
+                    console.log(err)
+                } else {
+                    res.send('success')
+                }
+            })
         }
-        res.send('success');
-    });
-});
+    })
+})
 
 // Get single patient
 router.get('/:id', function(req, res){                          // load page patients/id
